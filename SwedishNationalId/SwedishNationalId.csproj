@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard1.6</TargetFramework>
+    <TargetFramework>netstandard1.0</TargetFramework>
     <PackageId>SwedishNationalId</PackageId>    
     <Authors>Taras Bilynskyi</Authors>
     <PackageProjectUrl>https://github.com/tbilyn/SwedishNationalId/</PackageProjectUrl>
@@ -33,7 +33,7 @@
   </ItemGroup>
   <PropertyGroup>
     <SsdtUnitTestVersion>3.1</SsdtUnitTestVersion>
-    <Version>0.1.2</Version>
+    <Version>0.1.3</Version>
     <RepositoryUrl>https://github.com/tbilyn/SwedishNationalId/</RepositoryUrl>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
