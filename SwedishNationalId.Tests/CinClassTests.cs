@@ -8,7 +8,7 @@ namespace SwedishNationalId.Tests
         [Fact]
         public void TestNormalCIN()
         {
-            var nationaId = new Cin("5844208436");
+            var nationaId = new OrganisationNumber("5844208436");
 
             Assert.Equal(10, nationaId.ToString().Length);
             Assert.Equal("5844208436", nationaId.ToString());
@@ -16,7 +16,7 @@ namespace SwedishNationalId.Tests
             Assert.False(nationaId.IsSSN);
             Assert.True(nationaId.IsCIN);
 
-            nationaId = new Cin("584420-8436");
+            nationaId = new OrganisationNumber("584420-8436");
 
             Assert.Equal(10, nationaId.ToString().Length);
             Assert.Equal("5844208436", nationaId.ToString());
@@ -28,10 +28,10 @@ namespace SwedishNationalId.Tests
         [Fact]
         public void TestNormalSsnAsCin()
         {
-            Assert.Throws<FormatException>(() => new Cin("193910318637"));
-            Assert.Throws<FormatException>(() => new Cin("19391031-8637"));
-            Assert.Throws<FormatException>(() => new Cin("3910318637"));
-            Assert.Throws<FormatException>(() => new Cin("391031-8637"));
+            Assert.Throws<FormatException>(() => new OrganisationNumber("193910318637"));
+            Assert.Throws<FormatException>(() => new OrganisationNumber("19391031-8637"));
+            Assert.Throws<FormatException>(() => new OrganisationNumber("3910318637"));
+            Assert.Throws<FormatException>(() => new OrganisationNumber("391031-8637"));
         }
     }
 }

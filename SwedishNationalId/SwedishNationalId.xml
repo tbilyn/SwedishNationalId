@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SwedishNationalId</name>
+    </assembly>
+    <members>
+        <member name="T:SwedishNationalId.NationalIdTypes">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:SwedishNationalId.NationalId">
+            <summary>
+            Represents Swedish Personal Identification Number and Organization Number.
+            Handles the following formats: YYMMDD-CCCC YYMMDDCCCC, YYYYMMDD-CCCC and YYYYMMDDCCCC    /// 
+            </summary>
+        </member>
+        <member name="T:SwedishNationalId.Ssn">
+            <summary>
+            Immutable class that represents swedish personal identificatio number.
+            Understands formats YYMMDD-CCCC, YYMMDDCCCC, YYYYMMDD-CCCC and YYYYMMDDCCCC.
+            Uses format YYYYMMDDCCCC when converting to string.
+            </summary>
+        </member>
+        <member name="T:SwedishNationalId.OrganisationNumber">
+            <summary>
+            Immutable class that represents swedish organisation number.
+            Understands formats YYMMDD-CCCC and YYMMDDCCCC.
+            Uses format YYMMDDCCCC when converting to string.
+            </summary>
+        </member>
+    </members>
+</doc>

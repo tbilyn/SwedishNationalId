@@ -5,13 +5,21 @@ using System.Linq;
 
 namespace SwedishNationalId
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public enum NationalIdTypes
     {
         SSN = 1, // social security number
         CIN = 2, // corporate identity number
     }
 
-    [TypeConverter(typeof(NationalIdTypeConverter))]
+
+
+    /// <summary>
+    /// Represents Swedish Personal Identification Number and Organization Number.
+    /// Handles the following formats: YYMMDD-CCCC YYMMDDCCCC, YYYYMMDD-CCCC and YYYYMMDDCCCC    /// 
+    /// </summary>
     public class NationalId
     {
         internal string _id;
@@ -56,15 +64,15 @@ namespace SwedishNationalId
             if (length < 10 || length > 13)
                 return false;
 
-            var firstHypenPosition = copy.IndexOf('-');
-            var lastHypenPosition = copy.LastIndexOf('-');
+            var firstHyphenPosition = copy.IndexOf('-');
+            var lastHyphenPosition = copy.LastIndexOf('-');
 
-            // only one
-            if (firstHypenPosition != lastHypenPosition)
+            // only one hyphen allowed
+            if (firstHyphenPosition != lastHyphenPosition)
                 return false;
 
-            //check if hypen is in the correct position
-            if (lastHypenPosition != -1 && (lastHypenPosition + 1) != length - 4)
+            //check if hyphen is in the correct position
+            if (lastHyphenPosition != -1 && (lastHyphenPosition + 1) != length - 4)
                 return false;
 
             copy = copy.Replace("-", "");
@@ -74,8 +82,7 @@ namespace SwedishNationalId
 
             foreach (char symb in copy)
                 if (!char.IsDigit(symb))
-                    return false;
-                        
+                    return false;                        
 
             int s = 0;
             if (length == 12)
@@ -123,10 +130,14 @@ namespace SwedishNationalId
         {
             return _id;
         }
-        //public NationalIdTypes Type { get => this._type.Value; }
+        
     }
 
-    [TypeConverter(typeof(SsnTypeConverter))]
+    /// <summary>
+    /// Immutable class that represents swedish personal identificatio number.
+    /// Understands formats YYMMDD-CCCC, YYMMDDCCCC, YYYYMMDD-CCCC and YYYYMMDDCCCC.
+    /// Uses format YYYYMMDDCCCC when converting to string.
+    /// </summary>
     public class Ssn : NationalId
     {        
         public Ssn(string ssn)
@@ -152,10 +163,14 @@ namespace SwedishNationalId
 
     }
 
-    [TypeConverter(typeof(CinTypeConverter))]
-    public class Cin: NationalId
+    /// <summary>
+    /// Immutable class that represents swedish organisation number.
+    /// Understands formats YYMMDD-CCCC and YYMMDDCCCC.
+    /// Uses format YYMMDDCCCC when converting to string.
+    /// </summary>
+    public class OrganisationNumber: NationalId
     {
-        public Cin(string cin)
+        public OrganisationNumber(string cin)
         {
             if (cin == null)
             {
