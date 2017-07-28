@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace SwedishNationalId.Tests
@@ -104,8 +106,39 @@ namespace SwedishNationalId.Tests
             Assert.True(nationaId.IsValid());
             Assert.True(nationaId.IsSSN);
             Assert.False(nationaId.IsCIN);
-            
+
         }
 
+        [Fact]
+        public void TestEqual()
+        {
+            var one = new NationalId("197910318637");
+            var two = new NationalId("791031-8637");
+
+            var actual = one == two;
+
+            Assert.True(actual);
+        }
+
+        [Fact]
+        public void TestNotEqual()
+        {
+            var one = new NationalId("197910318637");
+            var two = new NationalId("791031-8636");
+
+            var actual = one == two;
+
+            Assert.True(!actual);
+        }
+
+        [Fact]
+        public void TestDistinct()
+        {
+            var list = new List<NationalId> { new NationalId("197910318637"), new NationalId("791031-8637") };
+
+            var distinctItems = list.Distinct().ToList();
+
+            Assert.Equal(1, distinctItems.Count);
+        }
     }
 }

@@ -130,7 +130,42 @@ namespace SwedishNationalId
         {
             return _id;
         }
-        
+
+        public override bool Equals(object obj)
+        {
+            NationalId nationalId = obj as NationalId;
+            if (nationalId == null)
+            {
+                return false;
+            }
+
+            return this.ToString() == nationalId.ToString();
+        }
+
+        public override int GetHashCode()
+        {
+            return this.ToString().GetHashCode();
+        }
+
+        public static bool operator ==(NationalId a, NationalId b)
+        {
+            if (ReferenceEquals(a, b))
+            {
+                return true;
+            }
+            
+            if (((object)a == null) || ((object)b == null))
+            {
+                return false;
+            }
+            
+            return a.ToString() == b.ToString();
+        }
+
+        public static bool operator !=(NationalId a, NationalId b)
+        {
+            return !(a == b);
+        }
     }
 
     /// <summary>
