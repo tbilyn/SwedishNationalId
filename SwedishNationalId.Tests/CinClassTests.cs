@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace SwedishNationalId.Tests
@@ -32,6 +34,27 @@ namespace SwedishNationalId.Tests
             Assert.Throws<FormatException>(() => new OrganisationNumber("19391031-8637"));
             Assert.Throws<FormatException>(() => new OrganisationNumber("3910318637"));
             Assert.Throws<FormatException>(() => new OrganisationNumber("391031-8637"));
+        }
+
+        [Fact]
+        public void TestEqual()
+        {
+            var one = new NationalId("5844208436");
+            var two = new OrganisationNumber("584420-8436");
+
+            var actual = one == two;
+
+            Assert.True(actual);
+        }
+
+        [Fact]
+        public void TestDistinct()
+        {
+            var list = new List<NationalId> { new OrganisationNumber("5844208436"), new NationalId("584420-8436") };
+
+            var distinctItems = list.Distinct().ToList();
+
+            Assert.Equal(1, distinctItems.Count);
         }
     }
 }
